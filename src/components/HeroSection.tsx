@@ -25,12 +25,12 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/try">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box text-base px-8">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box hover-lift text-base px-8">
               Try it out for free
             </Button>
           </Link>
           <a href="#what-is">
-            <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary text-base px-8">
+            <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary hover-lift text-base px-8">
               Learn what we do
             </Button>
           </a>

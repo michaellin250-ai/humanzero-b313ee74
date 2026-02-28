@@ -36,7 +36,7 @@ const Navbar = () => {
             </a>
           ))}
           <Link to="/try">
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box hover-lift">
               Try it free
             </Button>
           </Link>
