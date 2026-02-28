@@ -4,10 +4,10 @@ import yashImg from "@/assets/team-yash.png";
 import eliaImg from "@/assets/team-elia.png";
 import peterImg from "@/assets/team-peter.png";
 const team = [
-  { name: "Peter", role: "Front-End Engineer", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools.", image: peterImg, linkedin: "https://www.linkedin.com/in/peter-myung-a917123a4/" },
-  { name: "Elia", role: "Product Strategist", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools.", image: eliaImg, linkedin: "https://www.linkedin.com/in/elia-el-hayek-1ba423291/" },
-  { name: "Michael", role: "Full-Stack Engineer", bio: "Full-stack engineer crafting seamless user experiences and interactive result visualizations.", image: michaelImg, linkedin: "https://www.linkedin.com/in/michael-lin07/" },
-  { name: "Yash", role: "Full-Stack Engineer", bio: "Full-stack engineer building reliable detection pipelines and scalable infrastructure.", image: yashImg, linkedin: "https://www.linkedin.com/in/yashsolanki07/" },
+  { name: "Peter", role: "Front-End Engineer", school: "Computer Science @ University of Washington Seattle", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools.", image: peterImg, linkedin: "https://www.linkedin.com/in/peter-myung-a917123a4/" },
+  { name: "Elia", role: "Product Strategist", school: "Computer Science @ University of Washington Seattle", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools.", image: eliaImg, linkedin: "https://www.linkedin.com/in/elia-el-hayek-1ba423291/" },
+  { name: "Michael", role: "Full-Stack Engineer", school: "Computer Science @ University of Washington Seattle", bio: "Full-stack engineer crafting seamless user experiences and interactive result visualizations.", image: michaelImg, linkedin: "https://www.linkedin.com/in/michael-lin07/" },
+  { name: "Yash", role: "Full-Stack Engineer", school: "Computer Science @ University of Washington Seattle", bio: "Full-stack engineer building reliable detection pipelines and scalable infrastructure.", image: yashImg, linkedin: "https://www.linkedin.com/in/yashsolanki07/" },
 ];
 
 const WhoWeAreSection = () => {
@@ -42,7 +42,8 @@ const WhoWeAreSection = () => {
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground hover:text-primary transition-colors">
                 {member.name}
               </a>
-              <p className="text-xs text-primary mb-2">{member.role}</p>
+              <p className="text-xs text-primary mb-1">{member.role}</p>
+              <p className="text-xs italic text-muted-foreground mb-2">{member.school}</p>
               <p className="text-sm text-muted-foreground">{member.bio}</p>
             </div>
           ))}
