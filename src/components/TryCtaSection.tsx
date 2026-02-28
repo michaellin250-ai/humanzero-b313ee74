@@ -24,7 +24,7 @@ const TryCtaSection = () => {
             Try it out for free
           </Button>
         </Link>
-        <ScrollIndicator targetId="contact" />
+        <ScrollIndicator targetId="who-we-are" />
       </div>
     </section>
   );
