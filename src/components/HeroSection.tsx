@@ -32,6 +32,11 @@ const HeroSection = () => {
         style={{ background: "radial-gradient(circle, hsl(205 100% 65% / 0.2), transparent 70%)" }}
         aria-hidden="true"
       />
+      <div
+        className="absolute bottom-[15%] right-[12%] w-28 h-28 rounded-full pointer-events-none animate-[flicker_4.5s_ease-in-out_2s_infinite]"
+        style={{ background: "radial-gradient(circle, hsl(205 100% 58% / 0.22), transparent 70%)" }}
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 max-w-3xl">
         <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 glow-text whitespace-nowrap">
