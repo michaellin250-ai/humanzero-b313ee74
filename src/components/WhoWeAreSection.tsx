@@ -1,8 +1,8 @@
 const team = [
-  { name: "Peter Myung", role: "Engineering", bio: "Full-stack engineer focused on building reliable detection pipelines and scalable infrastructure." },
-  { name: "Elia", role: "ML", bio: "Machine learning researcher specializing in synthetic media detection and adversarial robustness." },
-  { name: "Michael", role: "Product", bio: "Product strategist shaping the user experience and ensuring responsible deployment of detection tools." },
-  { name: "Yash", role: "Design", bio: "Designer crafting intuitive interfaces that make complex AI results easy to understand." },
+  { name: "Peter Myung", role: "Front-End Engineer", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools." },
+  { name: "Elia", role: "Product Strategist", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools." },
+  { name: "Michael", role: "Front-End Engineer", bio: "Front-end engineer crafting seamless user experiences and interactive result visualizations." },
+  { name: "Yash", role: "Back-End Engineer", bio: "Back-end engineer building reliable detection pipelines and scalable infrastructure." },
 ];
 
 const WhoWeAreSection = () => {
