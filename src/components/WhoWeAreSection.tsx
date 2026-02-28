@@ -1,8 +1,10 @@
+import michaelImg from "@/assets/team-michael.png";
+
 const team = [
-  { name: "Peter Myung", role: "Front-End Engineer", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools." },
-  { name: "Elia", role: "Product Strategist", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools." },
-  { name: "Michael", role: "Front-End Engineer", bio: "Front-end engineer crafting seamless user experiences and interactive result visualizations." },
-  { name: "Yash", role: "Back-End Engineer", bio: "Back-end engineer building reliable detection pipelines and scalable infrastructure." },
+  { name: "Peter Myung", role: "Front-End Engineer", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools.", image: null },
+  { name: "Elia", role: "Product Strategist", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools.", image: null },
+  { name: "Michael", role: "Front-End Engineer", bio: "Front-end engineer crafting seamless user experiences and interactive result visualizations.", image: michaelImg },
+  { name: "Yash", role: "Back-End Engineer", bio: "Back-end engineer building reliable detection pipelines and scalable infrastructure.", image: null },
 ];
 
 const WhoWeAreSection = () => {
@@ -23,10 +25,17 @@ const WhoWeAreSection = () => {
               key={member.name}
               className="glass rounded-lg p-6 hover:border-primary/30 transition-colors group"
             >
-              {/* Avatar placeholder */}
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary font-bold text-lg group-hover:bg-primary/20 transition-colors">
-                {member.name.charAt(0)}
-              </div>
+              {member.image ? (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-14 h-14 rounded-full object-cover mb-4 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all"
+                />
+              ) : (
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary font-bold text-lg group-hover:bg-primary/20 transition-colors">
+                  {member.name.charAt(0)}
+                </div>
+              )}
               <h3 className="font-semibold text-foreground">{member.name}</h3>
               <p className="text-xs text-primary mb-2">{member.role}</p>
               <p className="text-sm text-muted-foreground">{member.bio}</p>
