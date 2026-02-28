@@ -47,7 +47,7 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/try">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box hover-lift text-base px-8">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box animate-pulse-glow hover-lift text-base px-8">
               Try it out for free
             </Button>
           </Link>
