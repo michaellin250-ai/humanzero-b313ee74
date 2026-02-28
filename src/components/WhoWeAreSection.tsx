@@ -6,8 +6,8 @@ import peterImg from "@/assets/team-peter.png";
 const team = [
   { name: "Peter", role: "Front-End Engineer", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools.", image: peterImg },
   { name: "Elia", role: "Product Strategist", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools.", image: eliaImg },
-  { name: "Michael", role: "Front-End Engineer", bio: "Front-end engineer crafting seamless user experiences and interactive result visualizations.", image: michaelImg },
-  { name: "Yash", role: "Back-End Engineer", bio: "Back-end engineer building reliable detection pipelines and scalable infrastructure.", image: yashImg },
+  { name: "Michael", role: "Full-Stack Engineer", bio: "Full-stack engineer crafting seamless user experiences and interactive result visualizations.", image: michaelImg },
+  { name: "Yash", role: "Full-Stack Engineer", bio: "Full-stack engineer building reliable detection pipelines and scalable infrastructure.", image: yashImg },
 ];
 
 const WhoWeAreSection = () => {
