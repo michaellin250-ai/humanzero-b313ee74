@@ -40,7 +40,7 @@ const WhatIsSection = () => {
           {cards.map((card) => (
             <div
               key={card.title}
-              className="glass rounded-lg p-6 hover:border-primary/30 transition-colors group"
+              className="glass rounded-lg p-6 hover:border-primary/30 transition-colors group hover-lift cursor-default"
             >
               <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <card.icon size={20} className="text-primary" aria-hidden="true" />
