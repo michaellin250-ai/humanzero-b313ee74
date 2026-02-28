@@ -50,7 +50,7 @@ const ContactSection = () => {
               className="flex-1"
               aria-label="Email address for mailing list"
             />
-            <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box hover-lift">
+            <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box animate-pulse-glow hover-lift">
               Subscribe
             </Button>
           </form>
