@@ -17,8 +17,8 @@ const HeroSection = () => {
       />
 
       <div className="relative z-10 max-w-3xl">
-        <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 glow-text">
-          <TypewriterText text="Welcome to HumanZero" speed={70} />
+        <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 glow-text whitespace-nowrap">
+          <TypewriterText text="Welcome to HumanZero" speed={120} />
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
           When seeing isn't believing, verify.
