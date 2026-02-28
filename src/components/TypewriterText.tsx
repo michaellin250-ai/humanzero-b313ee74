@@ -3,11 +3,21 @@ import { useState, useEffect } from "react";
 interface TypewriterTextProps {
   text: string;
   speed?: number;
+  delay?: number;
   className?: string;
 }
 
-const TypewriterText = ({ text, speed = 80, className = "" }: TypewriterTextProps) => {
+const TypewriterText = ({ text, speed = 80, delay = 0, className = "" }: TypewriterTextProps) => {
   const [displayedCount, setDisplayedCount] = useState(0);
+  const [started, setStarted] = useState(delay === 0);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -19,15 +29,22 @@ const TypewriterText = ({ text, speed = 80, className = "" }: TypewriterTextProp
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setDisplayedCount(text.length);
+    if (delay > 0 && !started) {
+      const timer = setTimeout(() => setStarted(true), delay);
+      return () => clearTimeout(timer);
+    }
+  }, [delay, started]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || !started) {
+      if (prefersReducedMotion) setDisplayedCount(text.length);
       return;
     }
     if (displayedCount < text.length) {
       const timer = setTimeout(() => setDisplayedCount((c) => c + 1), speed);
       return () => clearTimeout(timer);
     }
-  }, [displayedCount, text, speed, prefersReducedMotion]);
+  }, [displayedCount, text, speed, prefersReducedMotion, started]);
 
   return (
     <span className={className} aria-label={text} role="heading" aria-level={1}>
