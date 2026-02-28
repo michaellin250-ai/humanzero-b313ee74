@@ -19,7 +19,7 @@ const TryCtaSection = () => {
           We don't store your uploads in this prototype. All processing is in-memory.
         </p>
         <Link to="/try">
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box animate-pulse-glow text-base px-10">
+          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box animate-pulse-glow hover-lift text-base px-10">
             Try it out for free
           </Button>
         </Link>
