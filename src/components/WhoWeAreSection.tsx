@@ -23,7 +23,7 @@ const WhoWeAreSection = () => {
           {team.map((member) => (
             <div
               key={member.name}
-              className="glass rounded-lg p-6 hover:border-primary/30 transition-colors group"
+              className="glass rounded-lg p-6 hover:border-primary/30 transition-all group hover-lift"
             >
               {member.image ? (
                 <img
