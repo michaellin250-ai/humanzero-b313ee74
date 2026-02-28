@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import ScrollIndicator from "./ScrollIndicator";
 
 const TryCtaSection = () => {
   return (
@@ -23,6 +24,7 @@ const TryCtaSection = () => {
             Try it out for free
           </Button>
         </Link>
+        <ScrollIndicator targetId="contact" />
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { Upload, Cpu, BarChart3 } from "lucide-react";
+import ScrollIndicator from "./ScrollIndicator";
 
 const cards = [
   {
@@ -50,6 +51,7 @@ const WhatIsSection = () => {
             </div>
           ))}
         </div>
+        <ScrollIndicator targetId="what-we-do" />
       </div>
     </section>
   );
