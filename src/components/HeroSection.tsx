@@ -16,39 +16,22 @@ const HeroSection = () => {
         aria-hidden="true"
       />
 
-      {/* Lightning bolt decoration */}
-      <svg
-        className="absolute top-[15%] right-[10%] w-32 h-64 opacity-10 pointer-events-none animate-[lightning-flicker_3s_ease-in-out_infinite]"
-        viewBox="0 0 120 240"
-        fill="none"
+      {/* Flicker lights */}
+      <div
+        className="absolute top-[20%] right-[15%] w-40 h-40 rounded-full pointer-events-none animate-[flicker_4s_ease-in-out_infinite]"
+        style={{ background: "radial-gradient(circle, hsl(205 100% 60% / 0.25), transparent 70%)" }}
         aria-hidden="true"
-      >
-        <path
-          d="M70 0L30 100H60L20 240L100 120H65L110 0H70Z"
-          fill="url(#lightning-grad)"
-          filter="drop-shadow(0 0 20px hsl(205 100% 55%))"
-        />
-        <defs>
-          <linearGradient id="lightning-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="hsl(205 100% 70%)" />
-            <stop offset="100%" stopColor="hsl(205 100% 40%)" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      {/* Second smaller bolt */}
-      <svg
-        className="absolute bottom-[20%] left-[8%] w-20 h-40 opacity-[0.07] pointer-events-none rotate-12 animate-[lightning-flicker_4s_ease-in-out_1.5s_infinite]"
-        viewBox="0 0 120 240"
-        fill="none"
+      />
+      <div
+        className="absolute bottom-[30%] left-[10%] w-32 h-32 rounded-full pointer-events-none animate-[flicker_5s_ease-in-out_1.5s_infinite]"
+        style={{ background: "radial-gradient(circle, hsl(205 100% 55% / 0.2), transparent 70%)" }}
         aria-hidden="true"
-      >
-        <path
-          d="M70 0L30 100H60L20 240L100 120H65L110 0H70Z"
-          fill="hsl(205 100% 60%)"
-          filter="drop-shadow(0 0 15px hsl(205 100% 55%))"
-        />
-      </svg>
+      />
+      <div
+        className="absolute top-[50%] left-[50%] -translate-x-1/2 w-24 h-24 rounded-full pointer-events-none animate-[flicker_3.5s_ease-in-out_3s_infinite]"
+        style={{ background: "radial-gradient(circle, hsl(205 100% 65% / 0.2), transparent 70%)" }}
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 max-w-3xl">
         <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 glow-text whitespace-nowrap">
