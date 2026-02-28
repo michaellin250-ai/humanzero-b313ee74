@@ -21,7 +21,7 @@ const HeroSection = () => {
           <TypewriterText text="Welcome to HumanZero" speed={120} />
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
-          When seeing isn't believing, verify.
+          <TypewriterText text="When seeing isn't believing, verify." speed={80} delay={2600} />
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/try">
