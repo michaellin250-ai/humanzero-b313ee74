@@ -1,4 +1,5 @@
 import michaelImg from "@/assets/team-michael.png";
+import ScrollIndicator from "./ScrollIndicator";
 import yashImg from "@/assets/team-yash.png";
 import eliaImg from "@/assets/team-elia.png";
 import peterImg from "@/assets/team-peter.png";
@@ -44,6 +45,7 @@ const WhoWeAreSection = () => {
             </div>
           ))}
         </div>
+        <ScrollIndicator targetId="try-cta" />
       </div>
     </section>
   );

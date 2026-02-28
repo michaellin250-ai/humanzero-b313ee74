@@ -1,4 +1,5 @@
 import { Image, Video, Eye, FileSearch } from "lucide-react";
+import ScrollIndicator from "./ScrollIndicator";
 import {
   Accordion,
   AccordionContent,
@@ -67,6 +68,7 @@ const WhatWeDoSection = () => {
             </Accordion>
           </div>
         </div>
+        <ScrollIndicator targetId="who-we-are" />
       </div>
     </section>
   );

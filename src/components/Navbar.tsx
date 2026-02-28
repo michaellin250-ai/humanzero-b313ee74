@@ -7,7 +7,7 @@ const navLinks = [
   { label: "What is HumanZero", href: "#what-is" },
   { label: "What we do", href: "#what-we-do" },
   { label: "Who we are", href: "#who-we-are" },
-  
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {

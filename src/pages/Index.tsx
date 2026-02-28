@@ -4,6 +4,7 @@ import WhatIsSection from "@/components/WhatIsSection";
 import WhatWeDoSection from "@/components/WhatWeDoSection";
 import WhoWeAreSection from "@/components/WhoWeAreSection";
 import TryCtaSection from "@/components/TryCtaSection";
+import ContactSection from "@/components/ContactSection";
 import SiteFooter from "@/components/SiteFooter";
 
 const Index = () => {
@@ -19,6 +20,7 @@ const Index = () => {
         <WhatWeDoSection />
         <WhoWeAreSection />
         <TryCtaSection />
+        <ContactSection />
       </main>
       <SiteFooter />
     </>
