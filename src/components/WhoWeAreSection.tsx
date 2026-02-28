@@ -19,7 +19,7 @@ const WhoWeAreSection = () => {
     >
       <div className="container max-w-5xl">
         <h2 id="who-we-are-heading" className="text-3xl sm:text-4xl font-bold mb-12 gradient-text inline-block">
-          Who we are
+          Meet the Team
         </h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
