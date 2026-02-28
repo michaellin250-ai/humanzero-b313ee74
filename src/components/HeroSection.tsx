@@ -18,7 +18,7 @@ const HeroSection = () => {
 
       {/* Lightning bolt decoration */}
       <svg
-        className="absolute top-[15%] right-[10%] w-32 h-64 opacity-10 pointer-events-none"
+        className="absolute top-[15%] right-[10%] w-32 h-64 opacity-10 pointer-events-none animate-[lightning-flicker_3s_ease-in-out_infinite]"
         viewBox="0 0 120 240"
         fill="none"
         aria-hidden="true"
@@ -38,7 +38,7 @@ const HeroSection = () => {
 
       {/* Second smaller bolt */}
       <svg
-        className="absolute bottom-[20%] left-[8%] w-20 h-40 opacity-[0.07] pointer-events-none rotate-12"
+        className="absolute bottom-[20%] left-[8%] w-20 h-40 opacity-[0.07] pointer-events-none rotate-12 animate-[lightning-flicker_4s_ease-in-out_1.5s_infinite]"
         viewBox="0 0 120 240"
         fill="none"
         aria-hidden="true"
