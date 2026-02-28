@@ -68,7 +68,7 @@ const WhatWeDoSection = () => {
             </Accordion>
           </div>
         </div>
-        <ScrollIndicator targetId="who-we-are" />
+        <ScrollIndicator targetId="try-cta" />
       </div>
     </section>
   );
