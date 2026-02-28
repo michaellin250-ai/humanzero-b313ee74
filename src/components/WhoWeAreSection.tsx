@@ -39,7 +39,8 @@ const WhoWeAreSection = () => {
                   {member.name.charAt(0)}
                 </div>
               )}
-              <h3 className="font-semibold text-foreground">{member.name} - {member.role}</h3>
+              <h3 className="font-semibold text-foreground">{member.name}</h3>
+              <p className="text-xs text-primary mb-2">{member.role}</p>
               <p className="text-sm text-muted-foreground">{member.bio}</p>
             </div>
           ))}
