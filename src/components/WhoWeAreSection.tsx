@@ -45,7 +45,7 @@ const WhoWeAreSection = () => {
             </div>
           ))}
         </div>
-        <ScrollIndicator targetId="try-cta" />
+        <ScrollIndicator targetId="contact" />
       </div>
     </section>
   );
