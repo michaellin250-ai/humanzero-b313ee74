@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Upload, FileImage, FileVideo, AlertTriangle, RotateCcw } from "lucide-react";
+import { ArrowLeft, Upload, FileImage, FileVideo, AlertTriangle, RotateCcw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
@@ -13,9 +13,9 @@ interface Result {
   signals: string[];
 }
 
-const mockAnalyze = (): Promise<Result> =>
-  new Promise((resolve) =>
-    setTimeout(() => {
+const mockAnalyze = (signal?: AbortSignal): Promise<Result> =>
+  new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
       resolve({
         score: Math.floor(Math.random() * 60) + 30,
         signals: [
@@ -26,8 +26,12 @@ const mockAnalyze = (): Promise<Result> =>
           "No C2PA provenance metadata found",
         ],
       });
-    }, 2500)
-  );
+    }, 2500);
+    signal?.addEventListener("abort", () => {
+      clearTimeout(timeout);
+      reject(new Error("aborted"));
+    });
+  });
 
 const acceptMap: Record<MediaType, string> = {
   photo: ".jpg,.jpeg,.png,.webp",
@@ -42,6 +46,7 @@ const TryPage = () => {
   const [result, setResult] = useState<Result | null>(null);
   const [progress, setProgress] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   const handleFile = useCallback((f: File | null) => {
     setFile(f);
@@ -67,7 +72,14 @@ const TryPage = () => {
   const analyze = useCallback(async () => {
     setState("uploading");
     setProgress(0);
+    const abortController = new AbortController();
+    abortRef.current = abortController;
+
     const interval = setInterval(() => {
+      if (abortController.signal.aborted) {
+        clearInterval(interval);
+        return;
+      }
       setProgress((p) => {
         if (p >= 90) {
           clearInterval(interval);
@@ -78,17 +90,31 @@ const TryPage = () => {
     }, 200);
 
     setTimeout(() => {
-      setState("analyzing");
+      if (!abortController.signal.aborted) setState("analyzing");
     }, 800);
 
-    const res = await mockAnalyze();
-    clearInterval(interval);
-    setProgress(100);
-    setResult(res);
-    setState("done");
+    try {
+      const res = await mockAnalyze(abortController.signal);
+      clearInterval(interval);
+      setProgress(100);
+      setResult(res);
+      setState("done");
+    } catch {
+      clearInterval(interval);
+      // cancelled
+    }
+  }, []);
+
+  const cancelAnalysis = useCallback(() => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    setState("idle");
+    setProgress(0);
   }, []);
 
   const reset = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
     setFile(null);
     setPreview(null);
     setResult(null);
@@ -197,9 +223,20 @@ const TryPage = () => {
                 {(state === "uploading" || state === "analyzing") && (
                   <div className="space-y-3" aria-live="polite">
                     <Progress value={progress} className="h-2 bg-secondary" />
-                    <p className="text-sm text-muted-foreground text-center">
-                      {state === "uploading" ? "Uploading…" : "Analyzing signals…"}
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm text-muted-foreground">
+                        {state === "uploading" ? "Uploading…" : "Analyzing signals…"}
+                      </p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={cancelAnalysis}
+                        className="text-muted-foreground hover:text-destructive"
+                      >
+                        <X size={14} className="mr-1" aria-hidden="true" />
+                        Cancel
+                      </Button>
+                    </div>
                   </div>
                 )}
 
