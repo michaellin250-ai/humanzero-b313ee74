@@ -4,6 +4,8 @@ import { ArrowLeft, Upload, FileImage, FileVideo, AlertTriangle, RotateCcw, X } 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 type MediaType = "photo" | "video";
 type AnalysisState = "idle" | "uploading" | "analyzing" | "done";
@@ -11,26 +13,19 @@ type AnalysisState = "idle" | "uploading" | "analyzing" | "done";
 interface Result {
   score: number;
   signals: string[];
+  summary?: string;
 }
 
-const mockAnalyze = (signal?: AbortSignal): Promise<Result> =>
+const fileToBase64 = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => {
-      resolve({
-        score: Math.floor(Math.random() * 60) + 30,
-        signals: [
-          "Inconsistent lighting direction detected",
-          "Frequency domain anomalies in facial region",
-          "Compression artifacts consistent with re-encoding",
-          "Skin texture regularity above natural baseline",
-          "No C2PA provenance metadata found",
-        ],
-      });
-    }, 2500);
-    signal?.addEventListener("abort", () => {
-      clearTimeout(timeout);
-      reject(new Error("aborted"));
-    });
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      // Strip the data URL prefix to get raw base64
+      resolve(result.split(",")[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
   });
 
 const acceptMap: Record<MediaType, string> = {
@@ -70,11 +65,13 @@ const TryPage = () => {
   );
 
   const analyze = useCallback(async () => {
+    if (!file) return;
     setState("uploading");
     setProgress(0);
     const abortController = new AbortController();
     abortRef.current = abortController;
 
+    // Simulate progress while waiting for the AI response
     const interval = setInterval(() => {
       if (abortController.signal.aborted) {
         clearInterval(interval);
@@ -85,25 +82,56 @@ const TryPage = () => {
           clearInterval(interval);
           return 90;
         }
-        return p + Math.random() * 15;
+        return p + Math.random() * 8;
       });
-    }, 200);
-
-    setTimeout(() => {
-      if (!abortController.signal.aborted) setState("analyzing");
-    }, 800);
+    }, 300);
 
     try {
-      const res = await mockAnalyze(abortController.signal);
+      // Convert file to base64
+      setState("uploading");
+      const imageBase64 = await fileToBase64(file);
+
+      if (abortController.signal.aborted) {
+        clearInterval(interval);
+        return;
+      }
+
+      setState("analyzing");
+
+      const { data, error } = await supabase.functions.invoke("analyze-media", {
+        body: { imageBase64, mediaType: tab },
+      });
+
+      if (abortController.signal.aborted) {
+        clearInterval(interval);
+        return;
+      }
+
+      if (error) {
+        throw new Error(error.message || "Analysis failed");
+      }
+
+      if (data?.error) {
+        throw new Error(data.error);
+      }
+
       clearInterval(interval);
       setProgress(100);
-      setResult(res);
+      setResult({
+        score: data.score,
+        signals: data.signals,
+        summary: data.summary,
+      });
       setState("done");
-    } catch {
+    } catch (e) {
       clearInterval(interval);
-      // cancelled
+      if (abortController.signal.aborted) return;
+      console.error("Analysis error:", e);
+      toast.error(e instanceof Error ? e.message : "Analysis failed. Please try again.");
+      setState("idle");
+      setProgress(0);
     }
-  }, []);
+  }, [file, tab]);
 
   const cancelAnalysis = useCallback(() => {
     abortRef.current?.abort();
@@ -262,7 +290,7 @@ const TryPage = () => {
                         </span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {result.score > 60 ? "Likely AI-generated or manipulated" : "Appears mostly authentic"}
+                        {result.summary || (result.score > 60 ? "Likely AI-generated or manipulated" : "Appears mostly authentic")}
                       </p>
                     </div>
 
