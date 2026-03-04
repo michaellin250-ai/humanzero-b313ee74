@@ -1,5 +1,6 @@
 import { Upload, Cpu, BarChart3 } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
+import { Reveal, RevealGroup } from "@/hooks/use-scroll-reveal";
 
 const cards = [
   {
@@ -27,17 +28,23 @@ const WhatIsSection = () => {
       aria-labelledby="what-is-heading"
     >
       <div className="container max-w-5xl">
-        <h2 id="what-is-heading" className="text-3xl sm:text-4xl font-bold mb-6 gradient-text inline-block">
-          What is HumanZero?
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mb-4 text-lg">
-          HumanZero is an AI authenticity checker that helps people estimate whether media is AI-generated or manipulated.
-        </p>
-        <p className="text-muted-foreground max-w-2xl mb-12">
-          We provide probabilistic signals — not absolute truth — to help you make more informed decisions about the media you encounter.
-        </p>
+        <Reveal>
+          <h2 id="what-is-heading" className="text-3xl sm:text-4xl font-bold mb-6 gradient-text inline-block">
+            What is HumanZero?
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="text-muted-foreground max-w-2xl mb-4 text-lg">
+            HumanZero is an AI authenticity checker that helps people estimate whether media is AI-generated or manipulated.
+          </p>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="text-muted-foreground max-w-2xl mb-12">
+            We provide probabilistic signals — not absolute truth — to help you make more informed decisions about the media you encounter.
+          </p>
+        </Reveal>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <RevealGroup staggerDelay={0.15} baseDelay={0.1} className="grid gap-6 sm:grid-cols-3">
           {cards.map((card) => (
             <div
               key={card.title}
@@ -50,7 +57,7 @@ const WhatIsSection = () => {
               <p className="text-sm text-muted-foreground">{card.desc}</p>
             </div>
           ))}
-        </div>
+        </RevealGroup>
         <ScrollIndicator targetId="what-we-do" />
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { Image, Video, Eye, FileSearch } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
+import { Reveal, RevealGroup } from "@/hooks/use-scroll-reveal";
 import {
   Accordion,
   AccordionContent,
@@ -32,40 +33,46 @@ const WhatWeDoSection = () => {
         <div className="grid gap-12 lg:grid-cols-2 items-start">
           {/* Left - text */}
           <div>
-            <h2 id="what-we-do-heading" className="text-3xl sm:text-4xl font-bold mb-8 gradient-text inline-block">
-              What do we do?
-            </h2>
-            <ul className="space-y-5">
+            <Reveal>
+              <h2 id="what-we-do-heading" className="text-3xl sm:text-4xl font-bold mb-8 gradient-text inline-block">
+                What do we do?
+              </h2>
+            </Reveal>
+            <RevealGroup staggerDelay={0.12} baseDelay={0.1} className="space-y-5">
               {bullets.map((b) => (
-                <li key={b.text} className="flex items-start gap-3">
+                <li key={b.text} className="flex items-start gap-3 list-none">
                   <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                     <b.icon size={16} className="text-primary" aria-hidden="true" />
                   </div>
                   <span className="text-foreground">{b.text}</span>
                 </li>
               ))}
-            </ul>
+            </RevealGroup>
           </div>
 
           {/* Right - accordion */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">How it works</h3>
-            <Accordion type="single" collapsible className="space-y-2">
-              {accordionItems.map((item) => (
-                <AccordionItem
-                  key={item.value}
-                  value={item.value}
-                  className="glass rounded-lg px-4 border border-border/50"
-                >
-                  <AccordionTrigger className="text-sm font-medium text-foreground hover:no-underline">
-                    {item.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground">
-                    {item.content}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <Reveal>
+              <h3 className="text-lg font-semibold text-foreground mb-4">How it works</h3>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <Accordion type="single" collapsible className="space-y-2">
+                {accordionItems.map((item) => (
+                  <AccordionItem
+                    key={item.value}
+                    value={item.value}
+                    className="glass rounded-lg px-4 border border-border/50"
+                  >
+                    <AccordionTrigger className="text-sm font-medium text-foreground hover:no-underline">
+                      {item.title}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-muted-foreground">
+                      {item.content}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </Reveal>
           </div>
         </div>
         <ScrollIndicator targetId="try-cta" />
