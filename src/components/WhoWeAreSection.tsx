@@ -3,6 +3,8 @@ import ScrollIndicator from "./ScrollIndicator";
 import yashImg from "@/assets/team-yash.png";
 import eliaImg from "@/assets/team-elia.png";
 import peterImg from "@/assets/team-peter.png";
+import { Reveal, RevealGroup } from "@/hooks/use-scroll-reveal";
+
 const team = [
   { name: "Peter", role: "Front-End Engineer", school: "Computer Science @ University of Washington Seattle", bio: "Front-end engineer focused on building polished, accessible interfaces for detection tools.", image: peterImg, linkedin: "https://www.linkedin.com/in/peter-myung-a917123a4/" },
   { name: "Elia", role: "Product Strategist", school: "Computer Science @ University of Washington Seattle", bio: "Product strategist shaping the vision and ensuring responsible deployment of detection tools.", image: eliaImg, linkedin: "https://www.linkedin.com/in/elia-el-hayek-1ba423291/" },
@@ -18,11 +20,13 @@ const WhoWeAreSection = () => {
       aria-labelledby="who-we-are-heading"
     >
       <div className="container max-w-5xl">
-        <h2 id="who-we-are-heading" className="text-3xl sm:text-4xl font-bold mb-12 gradient-text inline-block">
-          Meet the Team
-        </h2>
+        <Reveal>
+          <h2 id="who-we-are-heading" className="text-3xl sm:text-4xl font-bold mb-12 gradient-text inline-block">
+            Meet the Team
+          </h2>
+        </Reveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup staggerDelay={0.12} baseDelay={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member) => (
             <div
               key={member.name}
@@ -47,7 +51,7 @@ const WhoWeAreSection = () => {
               <p className="text-sm text-muted-foreground">{member.bio}</p>
             </div>
           ))}
-        </div>
+        </RevealGroup>
         <ScrollIndicator targetId="contact" />
       </div>
     </section>
